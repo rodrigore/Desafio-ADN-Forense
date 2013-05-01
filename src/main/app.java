@@ -21,7 +21,7 @@ public class app {
 
 	public static void main(String[] args) throws IOException, InterruptedException {
 
-		int cores = 1;//Runtime.getRuntime().availableProcessors();
+		int cores = Runtime.getRuntime().availableProcessors();
 		List<SequenceAlignment> s = new ArrayList<SequenceAlignment>();
 		Map<String, BestSuspect> bufferBestSuspect = new HashMap<String, BestSuspect>();
 		ConcurrentMap<String, Integer> scoresDNA = new ConcurrentHashMap<String, Integer>();
@@ -70,7 +70,7 @@ public class app {
         	}
         }
         
-        System.out.println( best.toString() );
+        System.out.println( "El culpable es el numero:" + best.getSuspect().getId() + " (" + best.getSuspect().getAdn() + ")");
         
 		
 	}
