@@ -68,8 +68,36 @@ user    0m17.073s
 sys 0m0.220s
 </pre>
 
+
+## Secuencial vs Multithread
+
+### Secuencial
+<pre>
+$time java -Xmx3000M -jar sequence.jar input512.txt
+El culpable es el numero:44 (AGAAGGCAGTACGCAAGGACCCCTTACCATTACGATTTCCGTAACTGATTAACGCGCCCTAGATGTTTAATTTAGTCTGCAGCAGCAGAGTCGCGATTACGATGACTAGCGGAGTTTTAAAGTTAGGGGATCGGAAGAGCCGTCAA)
+
+real    0m25.540s
+user    0m56.244s
+sys 0m1.120s
+</pre>
+
+### Paralelo (4 threads)
+<pre>
+$time java -Xmx3000M -jar sequence.jar input512.txt
+El culpable es el numero:44 (AGAAGGCAGTACGCAAGGACCCCTTACCATTACGATTTCCGTAACTGATTAACGCGCCCTAGATGTTTAATTTAGTCTGCAGCAGCAGAGTCGCGATTACGATGACTAGCGGAGTTTTAAAGTTAGGGGATCGGAAGAGCCGTCAA)
+
+real    0m26.554s
+user    1m0.444s
+sys 0m1.160s
+</pre>
+
+### Resultado
+
+Al parecer no existe gran diferencia en cuanto al algoritmo secuencial y paralelo, por lo que probablemente el algoritmo de scheduling (Round Robin) y otros factores no se adaptan bien a la problematica, como tambien factores que desconozco ya que me faltan profundizar aun mas en cuanto al trabajo concurrente.
+
+
 ## Nota
-Si se generan cadenas de evidencia y sospechosos de larga magnitud, es probable que el Java Heap se llene, por lo que habria que aumentar el Heap (Ejemplo -Xmx 1024 )
+Si se generan cadenas de evidencia y sospechosos de larga magnitud, es probable que el Java Heap se llene, por lo que habria que aumentar el Heap (Ejemplo -Xmx3000M )
 
 ## JDK
 Probado con jdk 1.7.0_21
