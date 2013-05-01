@@ -17,5 +17,4 @@ public class ScoreData {
 		return tupleScore;
 	}
 	
-	
 }
