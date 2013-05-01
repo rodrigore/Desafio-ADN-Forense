@@ -9,13 +9,14 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
 
 import InputData.InputData;
 import InputData.Suspect;
 import SequenceAlignment.BestSuspect;
 import SequenceAlignment.SequenceAlignment;
+
+import com.google.common.collect.HashBasedTable;
+import com.google.common.collect.Table;
 
 public class app {
 
@@ -24,7 +25,7 @@ public class app {
 		int cores = Runtime.getRuntime().availableProcessors();
 		List<SequenceAlignment> s = new ArrayList<SequenceAlignment>();
 		Map<String, BestSuspect> bufferBestSuspect = new HashMap<String, BestSuspect>();
-		ConcurrentMap<String, Integer> scoresDNA = new ConcurrentHashMap<String, Integer>();
+		Table<String,String,Integer> scoresDNA = HashBasedTable.create();
 		
 		InputData input = FileRepository.load(args[0]);
 	

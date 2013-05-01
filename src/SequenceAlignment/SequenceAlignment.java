@@ -5,18 +5,19 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ConcurrentMap;
 
 import InputData.InputData;
 import InputData.Suspect;
 import adn.CurrentDNA;
 
+import com.google.common.collect.Table;
+
 public class SequenceAlignment implements Runnable {
 
 	public InputData input;
 	public Map<String, BestSuspect> bufferBestSuspect;
-	private ConcurrentMap<String, Integer> scoresDNA;
-	public SequenceAlignment(InputData input, Map<String, BestSuspect> bufferBestSuspect, ConcurrentMap<String, Integer> scoresDNA) {
+	Table<String,String,Integer> scoresDNA;
+	public SequenceAlignment(InputData input, Map<String, BestSuspect> bufferBestSuspect, Table<String,String,Integer>  scoresDNA) {
 		this.input = input;
 		this.bufferBestSuspect = bufferBestSuspect;
 		this.scoresDNA = scoresDNA;
@@ -85,10 +86,10 @@ public class SequenceAlignment implements Runnable {
 	
 	private int searchScore(String a, String b)
 	{
-		if ( !scoresDNA.containsKey(a + "-" + b) ) {
-			scoresDNA.put(a + "-" + b, evaluate(a, b));
-		}
-		return scoresDNA.get(a + "-" + b);
+		if ( !scoresDNA.contains(a, b) ) {
+				scoresDNA.put(a,b, evaluate(a, b));
+			}
+		return scoresDNA.get(a,b);
 	
 	}
 
