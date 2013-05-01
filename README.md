@@ -14,5 +14,32 @@ Refactorizar el codigo y mejorar la legilibilidad del codigo.
 
 java -jar sequence.jar input.txt
 
+## Pruebas
+
+El archivo input.txt contiene 128 sospechosos con dimensiones de cadenas diferentes generadasa por un programa que genera sospechosos aleatorios.
+
+Probe la solucion haciendo uso de 4 nucleos (Mi Notebook) probando la solucion de https://github.com/JPABLOix/sequenceAlignment  y la mia con la misma entrada. Haciendo uso de Time de Unix, los resultados fueron:
+
+ <pre>
+$time java -jar sequence.jar input.txt
+El culpable es el numero:65 (AGGAACGTATGTGCGGACTGCAGTATGTTGGGTCTGGCTGATAAATTAATCGACTGGTTGGCGAATCCACGATGCAGTGTTATAGAGCGGTTGCCTCGTGGG)
+real    0m12.518s
+user    0m22.577s
+sys 0m0.648s
+ </pre>
+
+<pre>
+$time php guilty.php input.txt
+El culpable es el sospechoso número 65 (:AGGAACGTATGTGCGGACTGCAGTATGTTGGGTCTGGCTGATAAATTAATCGACTGGTTGGCGAATCCACGATGCAGTGTTATAGAGCGGTTGCCTCGTGGG).
+real    0m13.716s
+user    0m11.021s
+sys 0m0.260s
+</pre>
+
+
+## Nota
+Si se generan cadenas de evidencia y sospechosos de larga magnitud, es probable que el Java Heap se llene, por lo que habria que aumentar el Heap (Ejemplo -Xmx 1024 )
+
+## JDK
 Probado con jdk 1.7.0_21
 
