@@ -70,7 +70,7 @@ public class FileRepository  {
 					val = Integer.parseInt(value.trim());
 				}
 				catch (NumberFormatException e){
-					System.out.println("No es numero:" + e.getMessage());
+//					System.out.println("No es numero:" + e.getMessage());
 				}
 				
 				String currentBase = matrixTemp.get(index).getBaseDNA();
