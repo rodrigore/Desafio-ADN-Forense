@@ -93,8 +93,12 @@ public class SequenceAlignment implements Runnable {
 	}
 
 	private int getScoreBetweenBases(String a, String b) {
-
-		return input.scores.get(a).get(b);
+		try {
+			return input.scores.get(a).get(b);
+		} catch(NullPointerException e){
+			System.err.println("a:" + a + ", b:" + b);
+			return 0;
+		}
 	}
 
 	private int getHighestScore(List<Integer> scorePerSolution) {

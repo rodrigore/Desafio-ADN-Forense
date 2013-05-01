@@ -11,9 +11,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.omg.CORBA.Current;
-
-
 import InputData.InputData;
 import InputData.Suspect;
 
@@ -40,8 +37,8 @@ public class FileRepository  {
         	} else if (letter == '0') {
         		input.setEvidence(l.substring(2));
         	} else if (Character.isDigit(letter)) {
-        		String adnSuspect = l.substring(2); 
-        		Suspect s = new Suspect(Integer.parseInt(String.valueOf(letter)), adnSuspect);
+        		String[] infoSuspect = l.split(":");
+        		Suspect s = new Suspect(Integer.parseInt(String.valueOf(infoSuspect[0])), infoSuspect[1]);
         		input.getSuspects().add(s);
         	}
         	
